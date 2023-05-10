@@ -1,9 +1,9 @@
 name: connect-publish
 on:
   push:
-    branches: [main] 
+    branches: [main]
   pull_request:
-    branches: [main] 
+    branches: [main]
     
 jobs:
   connect-publish:
@@ -14,6 +14,10 @@ jobs:
         with:
           r-version: 4.2.2 #freeze R version
           use-public-rspm: true #use R Studio Package Manager instead of CRAN
+      - name: Remove `.Rprofile`
+          shell: bash
+          run: |
+            rm .Rprofile
       - uses: r-lib/actions/setup-renv@v2
       - name: Create manifest.json
         shell: Rscript {0}
